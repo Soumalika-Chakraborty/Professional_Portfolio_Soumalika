@@ -1,0 +1,589 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Soumalika Chakraborty - Professional Portfolio</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --color-primary-dark: #121212; /* Very Deep Black/Charcoal */
+            --color-secondary-dark: #202020; /* Slightly lighter dark for contrast */
+            --color-text-light: #E0E0E0; /* Off-white for body text */
+            --color-accent: #FF9900; /* Professional Gold/Orange accent */
+            --color-text-title: #FFFFFF; /* Pure white for major titles */
+            --font-main: 'Poppins', sans-serif;
+        }
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        html {
+            scroll-behavior: smooth;
+        }
+        body {
+            font-family: var(--font-main);
+            background-color: var(--color-primary-dark);
+            color: var(--color-text-light);
+            line-height: 1.7;
+            overflow-x: hidden;
+        }
+        /* --- Global Typography --- */
+        h1, h2, h3, h4 {
+            font-family: var(--font-main);
+            color: var(--color-text-title);
+        }
+        h2 {
+            font-size: 2.8rem;
+            font-weight: 700;
+            color: var(--color-accent);
+            margin-bottom: 40px;
+            text-transform: uppercase;
+            border-bottom: 2px solid var(--color-accent);
+            padding-bottom: 10px;
+            display: inline-block;
+        }
+        /* --- Navigation Bar --- */
+        .header-nav {
+            position: fixed;
+            width: 100%;
+            top: 0;
+            left: 0;
+            z-index: 1000;
+            background-color: transparent; /* Initially transparent */
+            padding: 20px 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: background-color 0.4s ease;
+        }
+        .header-nav.scrolled {
+            background-color: rgba(18, 18, 18, 0.98); /* Solid background on scroll */
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.4);
+        }
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--color-text-title);
+            text-decoration: none;
+            text-transform: uppercase;
+        }
+        .nav-links a {
+            color: var(--color-text-light);
+            text-decoration: none;
+            font-weight: 400;
+            margin-left: 25px;
+            padding-bottom: 5px;
+            position: relative;
+            transition: color 0.3s ease;
+        }
+        .nav-links a:hover, .nav-links a.active {
+            color: var(--color-accent);
+        }
+        /* --- Home Section Styling (Based on User's Design) --- */
+        #home {
+            display: flex;
+            min-height: 100vh;
+            padding: 0; /* Remove padding to allow image to span edge */
+        }
+        .profile-image-container {
+            flex: 1;
+            min-width: 50%;
+        }
+        .profile-image {
+            width: 100%;
+            height: 100vh;
+            object-fit: cover;
+            display: block;
+            filter: grayscale(10%); /* Subtle grayscale/monochromatic look */
+        }
+        .intro-text {
+            flex: 1;
+            min-width: 50%;
+            padding: 150px 5%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            background-color: var(--color-primary-dark);
+        }
+        .intro-text h1 {
+            font-size: 5rem;
+            font-weight: 800;
+            line-height: 1.1;
+            color: var(--color-text-title);
+            text-transform: uppercase;
+            margin-bottom: 20px;
+        }
+        .intro-text h1 strong {
+            color: var(--color-accent);
+            display: block;
+        }
+        .title-divider {
+            width: 80px;
+            height: 2px;
+            background-color: var(--color-text-light);
+            border: none;
+            margin-bottom: 30px;
+        }
+        .intro-text p {
+            max-width: 500px;
+            font-size: 1.1rem;
+            margin-bottom: 40px;
+        }
+        .cta-buttons {
+            margin-bottom: 50px;
+        }
+        .btn {
+            text-decoration: none;
+            padding: 12px 25px;
+            border-radius: 5px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            display: inline-block;
+            text-transform: uppercase;
+            margin-right: 15px;
+        }
+        .primary-btn {
+            background-color: var(--color-accent);
+            color: var(--color-primary-dark);
+        }
+        .primary-btn:hover {
+            background-color: #E08500;
+        }
+        .secondary-btn {
+            color: var(--color-accent);
+            border: 2px solid var(--color-accent);
+            background: transparent;
+        }
+        .secondary-btn:hover {
+            background-color: var(--color-accent);
+            color: var(--color-primary-dark);
+        }
+        /* --- Social Icons --- */
+        .social-icons a {
+            display: inline-block;
+            color: var(--color-text-title);
+            margin-right: 20px;
+            font-size: 1.8rem;
+            transition: color 0.3s ease, transform 0.3s ease;
+        }
+        .social-icons a:hover {
+            color: var(--color-accent);
+            transform: translateY(-3px);
+        }
+        /* --- Inner Section Styling --- */
+        section:not(#home) {
+            padding: 100px 5%;
+            min-height: 80vh;
+            border-top: 1px solid var(--color-secondary-dark);
+        }
+        .content-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+        .card {
+            background-color: var(--color-secondary-dark);
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            transition: transform 0.3s ease;
+        }
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
+        }
+        .card h3 {
+            color: var(--color-accent);
+            font-weight: 600;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+        }
+        .card h3 i {
+            margin-right: 10px;
+            font-size: 1.5rem;
+        }
+        /* --- Tables (Resume/Education) --- */
+        .data-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 30px;
+        }
+        .data-table th, .data-table td {
+            padding: 15px;
+            text-align: left;
+            border-bottom: 1px solid var(--color-secondary-dark);
+        }
+        .data-table th {
+            background-color: var(--color-secondary-dark);
+            color: var(--color-accent);
+            font-weight: 600;
+            text-transform: uppercase;
+        }
+        .data-table tr:hover {
+            background-color: #2c2c2c;
+        }
+        /* --- Contact/Map --- */
+        .contact-info p i {
+            width: 30px;
+            color: var(--color-accent);
+            text-align: center;
+        }
+        .map-container {
+            margin-top: 40px;
+            background-color: var(--color-secondary-dark);
+            padding: 15px;
+            border-radius: 10px;
+        }
+        .map-container h3 {
+            margin-bottom: 15px;
+        }
+        .map-container iframe {
+            border-radius: 5px;
+        }
+        /* --- Certificate Login Section --- */
+        #login-form-container {
+            max-width: 400px;
+            margin: 30px auto;
+            padding: 30px;
+            background-color: var(--color-secondary-dark);
+            border-radius: 8px;
+            text-align: center;
+        }
+        #admin-password {
+            width: 100%;
+            padding: 10px;
+            margin: 15px 0;
+            background-color: #333;
+            border: 1px solid var(--color-accent);
+            color: var(--color-text-light);
+            border-radius: 5px;
+        }
+        #login-form-container button {
+            background-color: var(--color-accent);
+            color: var(--color-primary-dark);
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: background-color 0.3s;
+        }
+        #login-form-container button:hover {
+            background-color: #E08500;
+        }
+        #management-area {
+            margin-top: 20px;
+            padding-top: 20px;
+            border-top: 1px dashed var(--color-accent);
+        }
+        /* --- Mobile Responsiveness --- */
+        @media (max-width: 992px) {
+            /* Home section stack */
+            #home {
+                flex-direction: column;
+            }
+            .profile-image-container, .intro-text {
+                min-width: 100%;
+                padding: 50px 5%;
+            }
+            .profile-image {
+                height: 60vh; /* Adjust height on smaller screens */
+            }
+            .intro-text {
+                padding-top: 100px;
+            }
+            .intro-text h1 {
+                font-size: 3.5rem;
+            }
+            /* Navigation */
+            .nav-links {
+                position: absolute;
+                top: 80px;
+                right: 0;
+                width: 70%;
+                background-color: rgba(18, 18, 18, 0.95);
+                flex-direction: column;
+                display: none;
+                padding: 20px 0;
+                box-shadow: 0 5px 10px rgba(0, 0, 0, 0.5);
+                border-radius: 0 0 5px 5px;
+            }
+            .nav-links a {
+                margin: 10px 0;
+                padding: 10px 30px;
+                display: block;
+                text-align: right;
+            }
+            .nav-links.active {
+                display: flex;
+            }
+            .menu-toggle {
+                display: block; /* Show hamburger icon */
+            }
+        }
+    </style>
+</head>
+<body>
+    <header class="header-nav" id="header">
+        <a href="#home" class="logo">Soumalika Chakraborty</a>
+        <nav class="nav-links" id="navMenu">
+            <a href="#home" class="active">Home</a>
+            <a href="#about">About</a>
+            <a href="#skills">Skills</a>
+            <a href="#achievements">Achievements</a>
+            <a href="#experience">Experience</a>
+            <a href="#certificates">Certificates</a>
+            <a href="#resume">Resume</a>
+            <a href="#contact">Contact</a>
+        </nav>
+        <div class="menu-toggle" onclick="toggleMenu()"><i class="fas fa-bars"></i></div>
+    </header>
+    <section id="home">
+        <div class="profile-image-container">
+            <img src="sc_official_image.jpg" alt="Soumalika Chakraborty Professional Photo" class="profile-image">
+        </div>
+        <div class="intro-text">
+            <p style="color: var(--color-accent); font-weight: 600;">Welcome to my</p>
+            <h1>My Professional Portfolio</h1>
+            <hr class="title-divider">
+            <p>An aspiring technologist and leader focused on Cyber Security, Deep Learning, and Project Management. I leverage strong analytical and communication skills to drive successful, impactful projects.</p>
+            <div class="cta-buttons">
+                <a href="#about" class="btn primary-btn">Explore Now</a>
+                <a href="https://forms.gle/nXVikx7r3B8x4Njj6" target="_blank" class="btn secondary-btn"><i class="fas fa-file-alt"></i> Query Form</a>
+            </div>
+            <div class="social-icons">
+                <a href="mailto:soumalika.chakraborty1711@gmail.com" target="_blank" title="Email"><i class="fas fa-envelope"></i></a>
+                <a href="https://wa.me/917479381711" target="_blank" title="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+                <a href="https://www.linkedin.com/in/soumalika-chakraborty-1a01061b5?utm_source=share_via&utm_content=profile&utm_medium=member_android" target="_blank" title="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                <a href="#" target="_blank" title="Google Developers Group (Placeholder)"><i class="fab fa-google"></i></a>
+            </div>
+        </div>
+    </section>
+    <section id="about">
+        <h2>About Me</h2>
+        <div class="content-grid">
+            <div class="card">
+                <h3><i class="fas fa-user-tie"></i> Professional Summary</h3>
+                <p>I am Soumalika Chakraborty, a dedicated B.Tech student specializing in Computer Science. With a strong academic record and a drive for leadership, I am actively involved in technology groups and professional training, aiming to bridge the gap between theoretical knowledge and practical application in the deep tech sector.</p>
+            </div>
+            <div class="card">
+                <h3><i class="fas fa-graduation-cap"></i> Educational Background</h3>
+                <p><strong>B.Tech in CST</strong> from IEM, Kolkata (under UEM Kolkata).</p>
+                <p><strong>Class 12 (CBSE):</strong> Kendriya Vidyalaya RBNM Salboni (94.6%).</p>
+                <p><strong>Class 10 (CBSE):</strong> Kendriya Vidyalaya RBNM Salboni (97.4%).</p>
+            </div>
+        </div>
+    </section>
+    <section id="skills">
+        <h2>Core Competencies</h2>
+        <div class="content-grid">
+            <div class="card">
+                <h3><i class="fas fa-code"></i> Technical & Domain Skills</h3>
+                <ul>
+                    <li>Deep Learning & Machine Learning Models</li>
+                    <li>Generative AI (Google AI & Kaggle)</li>
+                    <li>Information Theory (Certification from CUHK)</li>
+                    <li>Microsoft Power BI</li>
+                    <li>Graphics Designing (Posters, UI/UX for Functional Products)</li>
+                    <li>UI/UX Design Fundamentals (Google Certified)</li>
+                </ul>
+            </div>
+            <div class="card">
+                <h3><i class="fas fa-handshake"></i> Professional & Soft Skills</h3>
+                <ul>
+                    <li>Leadership Skills & Teamwork</li>
+                    <li>Time Management & Organization</li>
+                    <li>Public Speaking & Effective Communication</li>
+                    <li>Crisis Management</li>
+                </ul>
+            </div>
+            <div class="card">
+                <h3><i class="fas fa-language"></i> Linguistic Proficiency</h3>
+                <p><strong>Mother Tongue:</strong> Bengali</p>
+                <p><strong>Proficient:</strong> English, Hindi</p>
+                <p><strong>Familiarity:</strong> Sanskrit, Spanish</p>
+            </div>
+        </div>
+    </section>
+    <section id="achievements">
+        <h2>Key Achievements & Recognition</h2>
+        <div class="card">
+            <ul>
+                <li>National Level Debater and active participant in various academic forums.</li>
+                <li>Rajya Puraskar Awardee in Bharat Scout and Guide, demonstrating commitment and discipline.</li>
+                <li>Chief Equity Officer (1 Year) and Secretariat (2 Years) in UEMMUNSC.</li>
+                <li>Successful Event Management Coordinator for Eutopia and Coordinator for Driveblaze Techfest.</li>
+                <li>Served as a Judge for multiple elocution and debate competitions.</li>
+                <li>Active Member of Google Developer Groups in UEM Campus.</li>
+            </ul>
+        </div>
+    </section>
+    <section id="experience">
+        <h2>Internships & Professional Experience</h2>
+        <div class="content-grid">
+            <div class="card">
+                <h3><i class="fas fa-briefcase"></i> Project Management & Dev Intern</h3>
+                <p>Software Development and Project Management Intern under DEEP TECH Centre of Excellence of UEM, Kolkata in association with IIT, Kharagpur.</p>
+            </div>
+            <div class="card">
+                <h3><i class="fas fa-search"></i> Research Internship</h3>
+                <p>Machine Learning Internship from NITTTR, Kolkata on "AI-based detection of brain tumors" using Deep Learning models.</p>
+            </div>
+            <div class="card">
+                <h3><i class="fas fa-user-graduate"></i> Trainee Program</h3>
+                <p>Trainee under PwC Acceleration Center India, Kolkata.</p>
+            </div>
+        </div>
+    </section>
+    <section id="certificates">
+        <h2>Professional Certifications</h2>
+        <p>This section displays all earned professional certificates. The actual certificate images will be uploaded and managed securely.</p>
+        <div class="certificate-gallery content-grid" style="margin-top: 30px;">
+            <div class="card" style="text-align: center;">
+                <p>Certificates will be dynamically loaded here by the server.</p>
+                <p style="color: var(--color-accent); margin-top: 10px;">(e.g., UI/UX from Google, Information Theory from CUHK, etc.)</p>
+            </div>
+        </div>
+        <hr style="margin: 40px 0; border-color: var(--color-secondary-dark);">
+        <div class="admin-panel-toggle" style="text-align: center;">
+            <button id="show-login-btn" class="btn primary-btn" onclick="document.getElementById('login-form-container').style.display = 'block'; this.style.display = 'none';">Admin: Manage Certificates</button>
+        </div>
+        <div id="login-form-container" style="display:none;">
+            <h3>Admin Login</h3>
+            <p id="login-message" style="margin-bottom: 10px;"></p>
+            <input type="password" id="admin-password" placeholder="Enter Password">
+            <button onclick="attemptLogin()">Login</button>
+            <div id="management-area" style="display:none;">
+                <h4>Secured Management Console</h4>
+                <p style="color: red; font-weight: 600;">NOTE: This functionality requires a secure backend to process file uploads and deletion.</p>
+                <form id="upload-form" enctype="multipart/form-data" style="margin: 20px 0;">
+                    <input type="file" name="certificate-file" required style="padding: 10px; background-color: #333; border-radius: 5px; border: 1px solid var(--color-accent);">
+                    <button type="submit" style="margin-top: 10px;">Upload Certificate</button>
+                </form>
+            </div>
+        </div>
+    </section>
+    <section id="resume">
+        <h2>Detailed Resume</h2>
+        <a href="https://drive.google.com/file/d/1Io8VOKrhRySbSjvasepqvxgGaDY3va5P/view?usp=sharing" class="btn primary-btn" style="margin-bottom: 30px;" download="Soumalika_Chakraborty_Resume.pdf"><i class="fas fa-download"></i> Download Resume (PDF)</a>
+        <div class="card" style="padding: 40px;">
+            <h3>Soumalika Chakraborty</h3>
+            <hr style="border-color: #444; margin: 15px 0;">
+            <p style="margin-bottom: 25px;"><i class="fas fa-envelope" style="margin-right: 10px;"></i> soumalika.chakraborty1711@gmail.com | <i class="fas fa-phone" style="margin-right: 10px;"></i> 7479381711</p>
+            <h4 style="color: var(--color-accent); margin-top: 20px;">Personal Details</h4>
+            <ul style="list-style: none; padding-left: 0;">
+                <li>Date of Birth: 31st August, 2004</li>
+                <li>Address: Newtown, Action Area 3B, Street - 839, Kolkata - 700160</li>
+                <li>Blood Group: O+</li>
+            </ul>
+            <h4 style="color: var(--color-accent); margin-top: 20px;">Education</h4>
+            <table class="data-table">
+                <thead>
+                    <tr><th>Qualification</th><th>Institution</th><th>Year</th><th>Result</th></tr>
+                </thead>
+                <tbody>
+                    <tr><td>B.Tech CST (Cyber Security)</td><td>IEM, Kolkata (UEM Kolkata)</td><td>Ongoing</td><td>Aggregate GPA (Till 2nd Year): 9.46</td></tr>
+                    <tr><td>Class 12 Passout</td><td>Kendriya Vidyalaya RBNM Salboni (CBSE)</td><td>2022</td><td>94.6%</td></tr>
+                    <tr><td>Class 10 Passout</td><td>Kendriya Vidyalaya RBNM Salboni (CBSE)</td><td>2020</td><td>97.4%</td></tr>
+                </tbody>
+            </table>
+            <h4 style="color: var(--color-accent); margin-top: 20px;">Strengths</h4>
+            <p>Leadership Skills, Time Management, Public Speaking, Crisis Management.</p>
+            <h4 style="color: var(--color-accent); margin-top: 20px;">Skills Summary</h4>
+            <p>Technical: Deep Learning, Gen AI, Microsoft Power BI, Graphics Design. | Languages: English (Proficient), Hindi (Proficient), Bengali (Mother Tongue), Sanskrit, Spanish.</p>
+        </div>
+    </section>
+    <section id="contact">
+        <h2>Connect With Me</h2>
+        <div class="content-grid">
+            <div class="card contact-info">
+                <h3><i class="fas fa-address-book"></i> Contact Details</h3>
+                <p><i class="fas fa-envelope"></i> soumalika.chakraborty1711@gmail.com</p>
+                <p><i class="fas fa-phone-alt"></i> +91 7479381711</p>
+                <p><i class="fab fa-linkedin"></i> <a href="https://www.linkedin.com/in/soumalika-chakraborty-1a01061b5" target="_blank" style="color: var(--color-text-light);">LinkedIn Profile</a></p>
+                <p><i class="fas fa-map-marker-alt"></i> Newtown, Action Area 3B, Street - 839, Kolkata - 700160</p>
+                <h3 style="margin-top: 20px;"><i class="fas fa-clipboard-list"></i> Direct Query Form</h3>
+                <a href="https://forms.gle/nXVikx7r3B8x4Njj6" target="_blank" class="btn secondary-btn" style="border-radius: 20px;">Submit a Query Here</a>
+            </div>
+            <div class="map-container">
+                <h3><i class="fas fa-map-marked-alt"></i> Location Map</h3>
+                <iframe
+                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3683.774943960012!2d88.48703759999999!3d22.585292399999998!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3a027663e00b21a3%3A0x86831d1d81f1d1c!2sNewtown%2C%20Action%20Area%203B%2C%20Kolkata%2C%20West%20Bengal!5e0!3m2!1sen!2sbd!4v1701389200000!5m2!1sen!2sbd"
+                    width="100%"
+                    height="350"
+                    style="border:0;"
+                    allowfullscreen=""
+                    loading="lazy"
+                    referrerpolicy="no-referrer-when-downgrade">
+                </iframe>
+            </div>
+        </div>
+    </section>
+    <script>
+        // --- 1. Header Scroll Effect ---
+        window.addEventListener('scroll', function() {
+            const header = document.getElementById('header');
+            if (window.scrollY > 50) {
+                header.classList.add('scrolled');
+            } else {
+                header.classList.remove('scrolled');
+            }
+        });
+
+        // --- 2. Mobile Menu Toggle ---
+        function toggleMenu() {
+            document.getElementById('navMenu').classList.toggle('active');
+        }
+
+        // --- 3. Secure Login Logic (Client-Side) ---
+        // !!! SECURITY NOTE: This password is visible in the source code.
+        // For real security (to prevent external access to file upload/delete),
+        // the password check MUST be implemented on the server-side (backend).
+        const correctPassword = "Soumalika1711";
+
+        function attemptLogin() {
+            const inputPass = document.getElementById('admin-password').value;
+            const msg = document.getElementById('login-message');
+
+            if (inputPass === correctPassword) {
+                msg.textContent = 'Login Successful! Management console unlocked.';
+                msg.style.color = 'var(--color-accent)';
+                document.getElementById('management-area').style.display = 'block';
+                document.getElementById('admin-password').style.display = 'none';
+                document.querySelector('#login-form-container button').style.display = 'none';
+            } else {
+                msg.textContent = 'Invalid Password. Access Denied.';
+                msg.style.color = 'red';
+                document.getElementById('admin-password').value = '';
+            }
+        }
+
+        // --- 4. Active Navigation Link on Scroll (Optional Enhancement) ---
+        // Highlight the current section in the navigation bar
+        const sections = document.querySelectorAll('section');
+        const navLinks = document.querySelectorAll('.nav-links a');
+
+        window.addEventListener('scroll', () => {
+            let current = '';
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                const sectionHeight = section.clientHeight;
+                if (pageYOffset >= sectionTop - 150) {
+                    current = section.getAttribute('id');
+                }
+            });
+
+            navLinks.forEach(a => {
+                a.classList.remove('active');
+                if (a.getAttribute('href').includes(current)) {
+                    a.classList.add('active');
+                }
+            });
+        });
+    </script>
+</body>
+</html>
